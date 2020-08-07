@@ -1,8 +1,9 @@
-package com.company.view;
+package com.company.view.Impl;
 
 import com.company.dao.AdminDao;
 import com.company.dao.Impl.AdminDaoImpl;
 import com.company.domain.Admin;
+import com.company.view.AdminView;
 
 import java.util.Scanner;
 
