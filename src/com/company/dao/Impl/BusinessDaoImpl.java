@@ -17,18 +17,18 @@ public class BusinessDaoImpl implements BusinessDao {
     private ResultSet rs =null;
     @Override
     public List<Business> listBusiness(String businessName, String businessAddress) {
-        ArrayList<Business> list  = new ArrayList<>();
+        List<Business> list  = new ArrayList<>();
         StringBuffer sql =new StringBuffer("select * from business where 1=1");
-        if(businessName != null  && !businessName.equals(" "))
+        if(businessName != null  && !businessName.equals(""))
         {
             //传入了商家名
-            sql.append("and businessName like '%").append(businessName).append("%'");
+            sql.append("and businessName like '%").append(businessName).append("%' ");
             System.out.println(sql);
         }
-        if(businessAddress != null  && !businessAddress.equals(" "))
+        if(businessAddress != null  && !businessAddress.equals(""))
         {
             //传入了商家名
-            sql.append("and businessAddress like '%").append(businessAddress).append("%'");
+            sql.append(" and businessAddress like '%").append(businessAddress).append("%'");
             System.out.println(sql);
         }
 
@@ -50,6 +50,7 @@ public class BusinessDaoImpl implements BusinessDao {
         }finally {
             JDBCUtils.close(rs,pstmt,conn);
         }
-        return null;
+
+        return list;
     }
 }
