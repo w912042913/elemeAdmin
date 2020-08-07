@@ -67,3 +67,5 @@ public class ElmAdminEntry {
 
     }
 }
+//  有对象的时候 对象名.方法名
+// 没对象的时候 类名.方法名有static
