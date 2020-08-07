@@ -4,6 +4,9 @@ package com.company;
 import com.company.domain.Admin;
 import com.company.view.AdminViewImpl;
 import com.company.view.AdminView;
+import com.company.view.BusinessView;
+import com.company.view.BusinessViewImpl;
+
 import java.util.Scanner;
 public class ElmAdminEntry {
 
@@ -17,7 +20,7 @@ public class ElmAdminEntry {
         System.out.println("-----------------------------------------------------------");
         System.out.println("|\t\t\t\t饿了么控制台版后台管理系统 V1.0\t\t\t\t|");
         System.out.println("-----------------------------------------------------------");
-
+        BusinessView businessView = new BusinessViewImpl();
         // 调用登录方法
         AdminView adminView = new AdminViewImpl();
         Admin admin = adminView.login();
@@ -34,7 +37,7 @@ public class ElmAdminEntry {
 
                 switch (menu) {
                     case 1:
-                        System.out.println("1.所有商家列表");
+                        businessView.listBusinessAll();
                         break;
                     case 2:
                         System.out.println("1.搜索商家");
