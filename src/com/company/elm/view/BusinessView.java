@@ -1,6 +1,6 @@
-package com.company.view;
+package com.company.elm.view;
 
-import com.company.domain.Business;
+import com.company.elm.domain.Business;
 
 public interface BusinessView {
     public void listBusinessAll();

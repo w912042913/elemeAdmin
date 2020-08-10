@@ -1,4 +1,4 @@
-package com.company.utils;
+package student;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
@@ -32,7 +32,7 @@ public class JDBCUtils {
         return ds.getConnection();
     }
     // close
-    public static void close(ResultSet rs, Statement stmt, Connection conn){
+    public static void close(Statement stmt, Connection conn, ResultSet rs){
 
         if (stmt != null) {
             try {
@@ -62,7 +62,7 @@ public class JDBCUtils {
 
     public static void close(Statement stmt, Connection conn){
 
-        close(null, stmt, conn);
+        close(stmt, conn, null);
 
     }
 

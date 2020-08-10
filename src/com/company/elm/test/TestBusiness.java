@@ -1,6 +1,6 @@
-package com.company.test;
+package com.company.elm.test;
 
-import com.company.dao.Impl.BusinessDaoImpl;
+import com.company.elm.dao.Impl.BusinessDaoImpl;
 
 public class TestBusiness {
     public static void main(String[] args) {

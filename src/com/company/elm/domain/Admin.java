@@ -1,4 +1,4 @@
-package com.company.domain;
+package com.company.elm.domain;
 
 public class Admin {
     private  Integer adminId;

@@ -1,9 +1,8 @@
-package com.company.test;
+package com.company.elm.test;
 
-import com.company.dao.AdminDao;
-import com.company.dao.Impl.AdminDaoImpl;
-import com.company.domain.Admin;
-import java.sql.*;
+import com.company.elm.dao.AdminDao;
+import com.company.elm.dao.Impl.AdminDaoImpl;
+import com.company.elm.domain.Admin;
 
 
 public class TestAdmin {

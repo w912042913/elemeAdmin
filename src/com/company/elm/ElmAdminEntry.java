@@ -1,17 +1,17 @@
-package com.company;
+package com.company.elm;
 
-import com.company.domain.Admin;
-import com.company.domain.Business;
-import com.company.view.AdminView;
-import com.company.view.BusinessView;
-import com.company.view.Impl.AdminViewImpl;
-import com.company.view.Impl.BusinessViewImpl;
+
+import com.company.elm.domain.Admin;
+import com.company.elm.view.Impl.AdminViewImpl;
+import com.company.elm.view.AdminView;
+import com.company.elm.view.BusinessView;
+import com.company.elm.view.Impl.BusinessViewImpl;
 
 import java.util.Scanner;
+public class ElmAdminEntry {
 
-public class ElmBusiness {
     public static void main(String[] args) {
-   work();
+        work();
     }
     public static  void  work(){
         Scanner input = new Scanner(System.in);
@@ -20,28 +20,27 @@ public class ElmBusiness {
         System.out.println("|\t\t\t\t饿了么控制台版后台管理系统 V1.0\t\t\t\t|");
         System.out.println("-----------------------------------------------------------");
 
+        // 调用登录方法
+        AdminView adminView = new AdminViewImpl();
+        Admin admin = adminView.login();
 
-        // 调用商家登录
-        BusinessView  businessView1 = new BusinessViewImpl();
-        Business login = businessView1.login();
         BusinessView businessView = new BusinessViewImpl();
-        Business business = businessView.login();
-        if (business!=null){
+        if (admin!=null){
             int menu = 0;
             System.out.println("~欢迎来到饿了么商家管理系统~");
             while (menu!= 5){
 
                 // 创建一个菜单
-                System.out.println("========= 一级菜单1.查看商家信息=2.修改商家信息=3.更新密码=4.所属商品管理=5.退出系统 =========");
+                System.out.println("========= 1.所有商家列表=2.搜索商家=3.新建商家=4.删除商家=5.退出系统 =========");
                 System.out.println("请选择相应的菜单编号");
                 menu = input.nextInt();
 
                 switch (menu){
                     case 1:
-                        businessView.showBusinessInfo(business.getBusinessId());
+                        businessView.listBusinessAll();
                         break;
                     case 2:
-                        businessView.updateBusinessInfo(business.getBusinessId());
+                        businessView.listBusinessBySearch();
                         break;
                     case 3:
                         businessView.saveBusiness();
@@ -68,3 +67,5 @@ public class ElmBusiness {
 
     }
 }
+//  有对象的时候 对象名.方法名
+// 没对象的时候 类名.方法名有static

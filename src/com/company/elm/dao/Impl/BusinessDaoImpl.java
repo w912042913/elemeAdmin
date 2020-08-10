@@ -1,15 +1,14 @@
-package com.company.dao.Impl;
+package com.company.elm.dao.Impl;
 
-import com.company.dao.BusinessDao;
-import com.company.domain.Business;
-import com.company.utils.JDBCUtils;
+import com.company.elm.dao.BusinessDao;
+import com.company.elm.domain.Business;
+import com.company.elm.utils.JDBCUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class BusinessDaoImpl implements BusinessDao {

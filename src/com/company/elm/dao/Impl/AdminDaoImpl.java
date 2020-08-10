@@ -1,8 +1,8 @@
-package com.company.dao.Impl;
+package com.company.elm.dao.Impl;
 
-import com.company.dao.AdminDao;
-import com.company.domain.Admin;
-import com.company.utils.JDBCUtils;
+import com.company.elm.dao.AdminDao;
+import com.company.elm.domain.Admin;
+import com.company.elm.utils.JDBCUtils;
 
 
 

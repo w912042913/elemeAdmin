@@ -1,9 +1,9 @@
-package com.company.view.Impl;
+package com.company.elm.view.Impl;
 
-import com.company.dao.BusinessDao;
-import com.company.dao.Impl.BusinessDaoImpl;
-import com.company.domain.Business;
-import com.company.view.BusinessView;
+import com.company.elm.dao.BusinessDao;
+import com.company.elm.dao.Impl.BusinessDaoImpl;
+import com.company.elm.domain.Business;
+import com.company.elm.view.BusinessView;
 
 import java.util.List;
 import java.util.Scanner;
@@ -58,7 +58,6 @@ public class BusinessViewImpl implements BusinessView {
     public void saveBusiness() {
         System.out.println("请输入商家名字：");
         String businessName = input.next();
-
         BusinessDaoImpl dao = new BusinessDaoImpl();
         int businessId = dao.saveBusiness(businessName);
         if (businessId > 0){
@@ -85,7 +84,8 @@ public class BusinessViewImpl implements BusinessView {
             }else {
                 System.out.println("删除商家失败！");
             }
-        }    }
+        }
+    }
 
     @Override
     public Business login() {

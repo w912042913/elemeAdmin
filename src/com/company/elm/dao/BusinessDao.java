@@ -1,6 +1,6 @@
-package com.company.dao;
+package com.company.elm.dao;
 
-import com.company.domain.Business;
+import com.company.elm.domain.Business;
 
 import java.util.List;
 
