@@ -13,27 +13,27 @@ import java.util.Collection;
 import java.util.List;
 
 public class BusinessDaoImpl implements BusinessDao {
-    private Connection conn =null;
-    private PreparedStatement pstmt =null;
-    private ResultSet rs =null;
+    private Connection conn = null;
+    private PreparedStatement pstmt = null;
+    private ResultSet rs = null;
 
     @Override
     public List<Business> listBusiness(String businessName, String businessAddress) {
         List<Business> list = new ArrayList<>();
         StringBuffer sql = new StringBuffer("select * from business where 1=1");
-        if (businessName != null && !businessName.equals("")){
+        if (businessName != null && !businessName.equals("")) {
             // 传入了商家名
             sql.append(" and businessName like '%").append(businessName).append("%' ");
         }
-        if (businessAddress != null && !businessAddress.equals("")){
+        if (businessAddress != null && !businessAddress.equals("")) {
             // 传入了商家名
             sql.append(" and businessAddress like '%").append(businessAddress).append("%' ");
         }
-        try{
+        try {
             conn = JDBCUtils.getConnection();
             pstmt = conn.prepareStatement(sql.toString());
             rs = pstmt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Business business = new Business();
                 business.setBusinessId(rs.getInt("businessId"));
                 business.setPassword(rs.getString("password"));
@@ -48,8 +48,8 @@ public class BusinessDaoImpl implements BusinessDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.close(rs,pstmt,conn);
+        } finally {
+            JDBCUtils.close(rs, pstmt, conn);
         }
 
 
@@ -69,38 +69,37 @@ public class BusinessDaoImpl implements BusinessDao {
             pstmt.executeUpdate();
             // 获取自增长的列
             rs = pstmt.getGeneratedKeys();
-            if (rs.next()){
+            if (rs.next()) {
                 businessId = rs.getInt(1);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.close(rs,pstmt,conn);
+        } finally {
+            JDBCUtils.close(rs, pstmt, conn);
         }
         return businessId;
     }
 
 
-
     @Override
     public Business getBusinessByNameByPass(Integer businessId, String password) {
-            Business business = null;
+        Business business = null;
         String sql = "select * from business where businessId = ? and password = ?";
-        try{
+        try {
             conn = JDBCUtils.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, businessId);
             pstmt.setString(2, password);
             rs = pstmt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 business = new Business();
                 business.setBusinessId(rs.getInt("businessId"));
                 business.setPassword(rs.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             JDBCUtils.close(rs, pstmt, conn);
         }
 
@@ -112,7 +111,7 @@ public class BusinessDaoImpl implements BusinessDao {
         int result = 0;
         String sql = "delete from business where businessId = ?";
 
-        try{
+        try {
             conn = JDBCUtils.getConnection();
             // 手动开启事物
             conn.setAutoCommit(false);
@@ -126,17 +125,72 @@ public class BusinessDaoImpl implements BusinessDao {
             result = 0;
             try {
                 conn.rollback();
-            }catch (SQLException e1){
+            } catch (SQLException e1) {
                 e1.printStackTrace();
             }
             e.printStackTrace();
 
 
-        }finally {
+        } finally {
             JDBCUtils.close(rs, pstmt, conn);
         }
 
         return result;
     }
 
+
+
+    @Override
+    public Business getBusinessByBusinessId(int businessId) {
+        Business business = null;
+        String sql = "select * from business where businessId = ? ";
+        try{
+            conn = JDBCUtils.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, businessId);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                business = new Business();
+                business.setBusinessId(rs.getInt("businessId"));
+                business.setPassword(rs.getString("password"));
+                business.setBusinessName(rs.getString("businessName"));
+                business.setBusinessAddress(rs.getString("businessAddress"));
+                business.setBusinessExplain(rs.getString("businessExplain"));
+                business.setStartPrice(rs.getDouble("starPrice"));
+                business.setDeliverPrice(rs.getDouble("deliveryPrice"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close(rs, pstmt, conn);
+        }
+
+        return business;
+    }
+
+    @Override
+    public int updateBusiness(Business business) {
+        int result = 0;
+        String sql = "update business set businessName = ?, " +
+                "businessAddress =?,businessExplain=?" +
+                ",starPrice=?,deliveryPrice=? where businessId = ? ";
+        try{
+            conn = JDBCUtils.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, business.getBusinessName());
+            pstmt.setString(2, business.getBusinessAddress());
+            pstmt.setString(3, business.getBusinessExplain());
+            pstmt.setDouble(4, business.getStartPrice());
+            pstmt.setDouble(5, business.getDeliverPrice());
+            pstmt.setInt(6, business.getBusinessId());
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close(rs, pstmt, conn);
+        }
+        return result;
+    }
 }

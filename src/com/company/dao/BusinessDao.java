@@ -10,6 +10,7 @@ public interface BusinessDao {
     public int saveBusiness(String businessName);
     public Business getBusinessByNameByPass(Integer businessId, String password);
     public int DeleteBusiness(int businessId);
-
+    public Business getBusinessByBusinessId( int businessId);
+    public int updateBusiness( Business business);
 }
 
