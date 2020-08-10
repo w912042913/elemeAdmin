@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
- public class BusinessDaoImpl implements BusinessDao {
+public class BusinessDaoImpl implements BusinessDao {
     private Connection conn =null;
     private PreparedStatement pstmt =null;
     private ResultSet rs =null;
@@ -54,29 +54,56 @@ import java.util.List;
 
         return list;
     }
-     @Override
-     public int saveBusiness(String businessName) {
-         int businessId = 0;
-         // 附带一个初始密码
-         String sql = "insert into business(businessName, password)values(?, '123456')";
-         try {
-             conn = JDBCUtils.getConnection();
-             pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-             // 可以在prepareStatement中设置返回自增长列的值
-             pstmt.setString(1, businessName);
-             pstmt.executeUpdate();
-             // 获取自增长的列
-             rs = pstmt.getGeneratedKeys();
-             if (rs.next()){
-                 businessId = rs.getInt(1);
-             }
 
-         } catch (SQLException e) {
-             e.printStackTrace();
-         }finally {
-             JDBCUtils.close(rs,pstmt,conn);
-         }
-         return businessId;
-     }
+    @Override
+    public int saveBusiness(String businessName) {
+        int businessId = 0;
+        // 附带一个初始密码
+        String sql = "insert into business(businessName, password)values(?, '123456')";
+        try {
+            conn = JDBCUtils.getConnection();
+            pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            // 可以在prepareStatement中设置返回自增长列的值
+            pstmt.setString(1, businessName);
+            pstmt.executeUpdate();
+            // 获取自增长的列
+            rs = pstmt.getGeneratedKeys();
+            if (rs.next()){
+                businessId = rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close(rs,pstmt,conn);
+        }
+        return businessId;
+    }
+
+    @Override
+    public Business getBusinessByNameByPass(Integer businessId, String password) {
+        Business business = null;
+        String sql = "select * from business where businessId = ? and password = ?";
+        try{
+            conn = JDBCUtils.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, businessId);
+            pstmt.setString(2, password);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                business = new Business();
+                business.setBusinessId(rs.getInt("businessId"));
+                business.setPassword(rs.getString("password"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close(rs, pstmt, conn);
+        }
+
+        return business;
+    }
+
+
 
 }

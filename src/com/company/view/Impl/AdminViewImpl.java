@@ -21,5 +21,7 @@ public class AdminViewImpl implements AdminView {
 //        return admin;
         return dao.getAdminByNameByPass(adminName, password);
     }
+
+
 }
 
