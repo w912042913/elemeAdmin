@@ -22,6 +22,8 @@ public class ElmBusiness {
 
 
         // 调用商家登录
+        BusinessView  businessView1 = new BusinessViewImpl();
+        Business login = businessView1.login();
         BusinessView businessView = new BusinessViewImpl();
         Business business = businessView.login();
         if (business!=null){
@@ -45,7 +47,7 @@ public class ElmBusiness {
                         businessView.saveBusiness();
                         break;
                     case 4:
-                        System.out.println("1.删除商家");
+                        businessView.deleteBusiness();
                         break;
                     case 5:
                         System.out.println("========= 欢迎下次光临饿了么系统 =========");

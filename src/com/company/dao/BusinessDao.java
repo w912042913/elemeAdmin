@@ -9,6 +9,7 @@ public interface BusinessDao {
     public List<Business> listBusiness(String businessName,String businessAddress );
     public int saveBusiness(String businessName);
     public Business getBusinessByNameByPass(Integer businessId, String password);
+    public int DeleteBusiness(int businessId);
 
 }
 

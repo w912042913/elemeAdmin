@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class BusinessDaoImpl implements BusinessDao {
@@ -80,9 +81,11 @@ public class BusinessDaoImpl implements BusinessDao {
         return businessId;
     }
 
+
+
     @Override
     public Business getBusinessByNameByPass(Integer businessId, String password) {
-        Business business = null;
+            Business business = null;
         String sql = "select * from business where businessId = ? and password = ?";
         try{
             conn = JDBCUtils.getConnection();
@@ -104,6 +107,36 @@ public class BusinessDaoImpl implements BusinessDao {
         return business;
     }
 
+    @Override
+    public int DeleteBusiness(int businessId) {
+        int result = 0;
+        String sql = "delete from business where businessId = ?";
 
+        try{
+            conn = JDBCUtils.getConnection();
+            // 手动开启事物
+            conn.setAutoCommit(false);
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, businessId);
+            result = pstmt.executeUpdate();
+            conn.commit();
+
+        } catch (SQLException e) {
+            // 进入了异常的代码区要给result置为 0
+            result = 0;
+            try {
+                conn.rollback();
+            }catch (SQLException e1){
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+
+
+        }finally {
+            JDBCUtils.close(rs, pstmt, conn);
+        }
+
+        return result;
+    }
 
 }
