@@ -1,10 +1,7 @@
-package com.company.elm.dao;
-
-
+package neusoft.dao;
 
 import com.company.elm.domain.Food;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface FoodDao {

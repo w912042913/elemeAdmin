@@ -1,9 +1,9 @@
-package com.company.elm.dao.Impl;
+package neusoft.dao.Impl;
 
-import com.company.elm.dao.BusinessDao;
-import com.company.elm.domain.Business;
-import com.company.elm.utils.JDBCUtils;
-
+import com.neusoft.dao.BusinessDao;
+import com.neusoft.domain.Admin;
+import com.neusoft.domain.Business;
+import com.neusoft.utils.JDBCUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +12,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Eric Lee
+ * @date 2020/8/7 14:52
+ */
 public class BusinessDaoImpl implements BusinessDao {
     private Connection conn =null;
     private PreparedStatement pstmt =null;
@@ -41,7 +45,7 @@ public class BusinessDaoImpl implements BusinessDao {
                 business.setBusinessAddress(rs.getString("businessAddress"));
                 business.setBusinessExplain(rs.getString("businessExplain"));
                 business.setStartPrice(rs.getDouble("starPrice"));
-                business.setDeliverPrice(rs.getDouble("deliveryPrice"));
+                business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
                 list.add(business);
 
 
@@ -99,7 +103,7 @@ public class BusinessDaoImpl implements BusinessDao {
                 business.setBusinessAddress(rs.getString("businessAddress"));
                 business.setBusinessExplain(rs.getString("businessExplain"));
                 business.setStartPrice(rs.getDouble("starPrice"));
-                business.setDeliverPrice(rs.getDouble("deliveryPrice"));
+                business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -160,7 +164,7 @@ public class BusinessDaoImpl implements BusinessDao {
                 business.setBusinessAddress(rs.getString("businessAddress"));
                 business.setBusinessExplain(rs.getString("businessExplain"));
                 business.setStartPrice(rs.getDouble("starPrice"));
-                business.setDeliverPrice(rs.getDouble("deliveryPrice"));
+                business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
 
             }
         } catch (SQLException e) {
@@ -185,7 +189,7 @@ public class BusinessDaoImpl implements BusinessDao {
             pstmt.setString(2, business.getBusinessAddress());
             pstmt.setString(3, business.getBusinessExplain());
             pstmt.setDouble(4, business.getStartPrice());
-            pstmt.setDouble(5, business.getDeliverPrice());
+            pstmt.setDouble(5, business.getDeliveryPrice());
             pstmt.setInt(6, business.getBusinessId());
             result = pstmt.executeUpdate();
 
@@ -232,7 +236,7 @@ public class BusinessDaoImpl implements BusinessDao {
                 business.setBusinessAddress(rs.getString("businessAddress"));
                 business.setBusinessExplain(rs.getString("businessExplain"));
                 business.setStartPrice(rs.getDouble("starPrice"));
-                business.setDeliverPrice(rs.getDouble("deliveryPrice"));
+                business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

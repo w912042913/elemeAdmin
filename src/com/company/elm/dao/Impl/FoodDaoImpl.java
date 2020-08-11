@@ -4,6 +4,7 @@ import com.company.elm.dao.FoodDao;
 import com.company.elm.domain.Food;
 import com.company.elm.utils.JDBCUtils;
 
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class FoodDaoImpl implements FoodDao {
          }catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close(rs, pstmt, conn);
+            JDBCUtils.close(pstmt,conn,rs);
         }
 
         return foodList; }
@@ -63,7 +64,7 @@ public class FoodDaoImpl implements FoodDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close(rs, pstmt, conn);
+            JDBCUtils.close(pstmt,conn,rs);
         }
       return food;
     }

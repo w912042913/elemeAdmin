@@ -1,17 +1,25 @@
-package com.company.elm;
+package neusoft;
 
-
+import com.company.elm.domain.Admin;
 import com.company.elm.domain.Business;
-import com.company.elm.view.Impl.BusinessViewImpl;
-import neusoft.view.BusinessView;
+import com.company.elm.view.AdminView;
+import com.company.elm.view.BusinessView;
+import com.company.elm.view.FoodView;
+import com.company.elm.view.impl.AdminViewImpl;
+import com.company.elm.view.impl.BusinessViewImpl;
+import com.company.elm.view.impl.FoodViewImpl;
 
 import java.util.Scanner;
 
+/**
+ * @author Eric Lee
+ * @date 2020/8/10 09:04
+ */
 public class ElmBusiness {
     private static  Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        work();
+       work();
     }
 
     public static  void  work(){
@@ -21,7 +29,6 @@ public class ElmBusiness {
         System.out.println("-----------------------------------------------------------");
 
         // 调用商家登录
-        BusinessView businessView1 = new BusinessViewImpl();
         BusinessView businessView = new BusinessViewImpl();
         Business business = businessView.login();
 
@@ -37,7 +44,7 @@ public class ElmBusiness {
 
                 switch (menu){
                     case 1:
-                        businessView.s;
+                        businessView.showBusinessInfo(business.getBusinessId());
                         break;
                     case 2:
                         businessView.updateBusinessInfo(business.getBusinessId());

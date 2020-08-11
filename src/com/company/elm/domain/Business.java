@@ -12,16 +12,6 @@ public class Business {
     public Business() {
     }
 
-    public Business(Integer businessId, String password, String businessName, String businessAddress, String businessExplain, Double startPrice, Double deliverPrice) {
-        this.businessId = businessId;
-        this.password = password;
-        this.businessName = businessName;
-        this.businessAddress = businessAddress;
-        this.businessExplain = businessExplain;
-        this.startPrice = startPrice;
-        this.deliverPrice = deliverPrice;
-    }
-
     public Integer getBusinessId() {
         return businessId;
     }

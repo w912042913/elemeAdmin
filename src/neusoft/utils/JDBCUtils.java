@@ -1,4 +1,4 @@
-package student;
+package neusoft.utils;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
@@ -10,6 +10,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+/**
+ * @author Eric Lee
+ * @date 2020/8/6 09:54
+ */
 public class JDBCUtils {
     private static DataSource ds;
 
@@ -32,7 +36,7 @@ public class JDBCUtils {
         return ds.getConnection();
     }
     // close
-    public static void close(Statement stmt, Connection conn, ResultSet rs){
+    public static void close(ResultSet rs, Statement stmt, Connection conn){
 
         if (stmt != null) {
             try {
@@ -62,7 +66,7 @@ public class JDBCUtils {
 
     public static void close(Statement stmt, Connection conn){
 
-        close(stmt, conn, null);
+      close(null, stmt, conn);
 
     }
 
@@ -73,3 +77,5 @@ public class JDBCUtils {
         return ds;
     }
 }
+
+

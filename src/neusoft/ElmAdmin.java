@@ -1,15 +1,18 @@
-package com.company.elm;
-
+package neusoft;
 
 import com.company.elm.domain.Admin;
-import com.company.elm.view.Impl.AdminViewImpl;
 import com.company.elm.view.AdminView;
 import com.company.elm.view.BusinessView;
+import com.company.elm.view.Impl.AdminViewImpl;
 import com.company.elm.view.Impl.BusinessViewImpl;
 
 import java.util.Scanner;
-public class ElmAdminEntry {
 
+/**
+ * @author Eric Lee
+ * @date 2020/8/7 11:30
+ */
+public class ElmAdmin {
     public static void main(String[] args) {
         work();
     }
@@ -46,7 +49,7 @@ public class ElmAdminEntry {
                         businessView.saveBusiness();
                         break;
                     case 4:
-                        businessView.deleteBusiness();
+                        businessView.removeBusiness();
                         break;
                     case 5:
                         System.out.println("========= 欢迎下次光临饿了么系统 =========");
@@ -67,5 +70,3 @@ public class ElmAdminEntry {
 
     }
 }
-//  有对象的时候 对象名.方法名
-// 没对象的时候 类名.方法名有static
